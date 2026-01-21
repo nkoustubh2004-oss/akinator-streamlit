@@ -77,18 +77,22 @@ Respond with ONLY a number.
 )
 
 def ask_question():
-    chain = question_prompt | llm
-    response = chain.invoke({"history": st.session_state.history})
-    q = response.content.strip()
-    if not q.endswith("?"):
-        q += "?"
-    return q
+    try:
+        chain = question_prompt | llm
+        response = chain.invoke({"history": st.session_state.history})
+        q = response.content.strip()
+        return q if q.endswith("?") else q + "?"
+    except Exception:
+        return "Is it something commonly used?"
 
 def make_guess():
-    chain = guess_prompt | llm
-    response = chain.invoke({"history": st.session_state.history})
-    guess = response.content.strip().lower()
-    return guess if guess else "something"
+    try:
+        chain = guess_prompt | llm
+        response = chain.invoke({"history": st.session_state.history})
+        guess = response.content.strip()
+        return guess if guess else "something"
+    except Exception:
+        return "something"
 
 def get_confidence(guess):
     chain = confidence_prompt | llm
@@ -160,3 +164,4 @@ if st.session_state.question_count >= MAX_QUESTIONS or st.session_state.early_fi
     if st.button("Play Again", key="play_again"):
         st.session_state.clear()
         st.rerun()
+
