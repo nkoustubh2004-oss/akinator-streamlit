@@ -4,10 +4,10 @@ from langchain_core.prompts import ChatPromptTemplate
 
 st.set_page_config(page_title="Akinator Game", page_icon="🎩")
 st.title("🎩 Akinator Game")
-st.write("Think of an object. I will try to guess it within 10 questions!")
+st.write("Think of an object. I will try to guess it within 15 questions!")
 
 
-MAX_QUESTIONS = 10
+MAX_QUESTIONS = 15
 
 llm = ChatGroq(
     model="llama-3.1-8b-instant",
@@ -164,4 +164,5 @@ if st.session_state.question_count >= MAX_QUESTIONS or st.session_state.early_fi
     if st.button("Play Again", key="play_again"):
         st.session_state.clear()
         st.rerun()
+
 
