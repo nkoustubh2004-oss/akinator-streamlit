@@ -4,7 +4,7 @@ from langchain_core.prompts import ChatPromptTemplate
 
 st.set_page_config(page_title="Akinator Game", page_icon="🎩")
 st.title("🎩 Akinator Game")
-st.write("Think of an object. I will try to guess it within 30 questions!")
+st.write("Think of an object. I will try to guess it within 10 questions!")
 
 
 MAX_QUESTIONS = 10
