@@ -7,7 +7,7 @@ st.title("🎩 Akinator Game")
 st.write("Think of an object. I will try to guess it within 30 questions!")
 
 
-MAX_QUESTIONS = 30
+MAX_QUESTIONS = 10
 
 llm = ChatGroq(
     model="llama-3.1-8b-instant",
